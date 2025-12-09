@@ -10,11 +10,11 @@ setup(
     name="fastmcp-docs",
     version="0.1.0",
     author="CDC DevOps Team",
-    author_email="devops@cdc.com",
+    author_email="orco82@gmail.com",
     description="Swagger-style documentation generator for FastMCP servers",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.tools.sap/CDC/devops-MCP-server",
+    url="https://github.com/orco82/fastmcp-docs",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -45,8 +45,8 @@ setup(
     },
     keywords="fastmcp documentation swagger openapi api-docs mcp",
     project_urls={
-        "Bug Reports": "https://github.tools.sap/CDC/devops-MCP-server/issues",
-        "Source": "https://github.tools.sap/CDC/devops-MCP-server",
-        "Documentation": "https://github.tools.sap/CDC/devops-MCP-server/blob/main/README.md",
+        "Bug Reports": "https://github.com/orco82/fastmcp-docs/issues",
+        "Source": "https://github.com/orco82/fastmcp-docs",
+        "Documentation": "https://github.com/orco82/fastmcp-docs/blob/main/README.md",
     },
 )
