@@ -1,6 +1,19 @@
 """HTML templates for FastMCP documentation UI"""
 
 
+def get_default_favicon_svg() -> str:
+    """Generate default favicon SVG (green circle with M)
+
+    Returns:
+        SVG string for the default favicon
+    """
+    return """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="48" fill="#49cc90" stroke="#3ba876" stroke-width="2"/>
+    <text x="50" y="50" text-anchor="middle" dominant-baseline="central"
+          font-family="Arial, sans-serif" font-size="60" font-weight="bold" fill="white">M</text>
+</svg>"""
+
+
 def get_docs_ui_template(config) -> str:
     """Generate the HTML documentation UI
 
@@ -26,12 +39,16 @@ def get_docs_ui_template(config) -> str:
         </ul>
         """
 
+    # Determine favicon URL
+    favicon_link = config.favicon_url if config.favicon_url else "/favicon.svg"
+
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{config.title}</title>
+    <link rel="icon" type="image/svg+xml" href="{favicon_link}">
     <style>{_get_css()}</style>
 </head>
 <body>

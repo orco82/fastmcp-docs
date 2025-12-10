@@ -37,6 +37,7 @@ class FastMCPDocsConfig:
 
     # UI customization
     page_title_emoji: Optional[str] = None
+    favicon_url: Optional[str] = None  # Custom favicon URL or path
     enable_cors: bool = True
     verbose: bool = True
 

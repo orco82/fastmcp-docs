@@ -1,7 +1,7 @@
 """Route registration for FastMCP documentation"""
-from starlette.responses import JSONResponse, HTMLResponse
+from starlette.responses import JSONResponse, HTMLResponse, Response
 from typing import Dict, Any
-from .templates import get_docs_ui_template
+from .templates import get_docs_ui_template, get_default_favicon_svg
 from .config import FastMCPDocsConfig
 
 
@@ -19,6 +19,7 @@ class RouteRegistrar:
         self._register_api_tool_detail_route()
         self._register_openapi_route()
         self._register_docs_ui_route()
+        self._register_favicon_route()
 
         if self.config.verbose:
             print("✓ Documentation routes registered")
@@ -97,6 +98,19 @@ class RouteRegistrar:
             """Serve Swagger-style API documentation UI"""
             html_content = get_docs_ui_template(self.config)
             return HTMLResponse(content=html_content)
+
+    def _register_favicon_route(self):
+        """Register /favicon.svg endpoint (only if no custom favicon)"""
+        if self.config.favicon_url is None:
+            @self.mcp.custom_route("/favicon.svg", methods=["GET"])
+            async def favicon(_request):
+                """Serve default favicon SVG"""
+                svg_content = get_default_favicon_svg()
+                return Response(
+                    content=svg_content,
+                    media_type="image/svg+xml",
+                    headers={"Cache-Control": "public, max-age=86400"}
+                )
 
     def _build_openapi_paths(self) -> Dict[str, Any]:
         """Build OpenAPI paths from tools registry"""

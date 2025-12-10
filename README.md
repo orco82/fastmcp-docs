@@ -60,7 +60,31 @@ docs = FastMCPDocs(
     version="1.0.0",
     description="API documentation for my awesome MCP server",
     base_url="https://api.example.com",
-    page_title_emoji="🚀"
+    page_title_emoji="🚀",
+    favicon_url="https://example.com/favicon.ico"  # Optional: custom favicon
+)
+```
+
+### Customizing the Favicon
+
+By default, FastMCP Docs uses a green circle with the letter "M" as the favicon. You can customize it:
+
+```python
+# Use default favicon (green circle with M)
+docs = FastMCPDocs(mcp, title="My Tools")
+
+# Use custom favicon URL
+docs = FastMCPDocs(
+    mcp,
+    title="My Tools",
+    favicon_url="https://example.com/my-icon.ico"
+)
+
+# Use local favicon file
+docs = FastMCPDocs(
+    mcp,
+    title="My Tools",
+    favicon_url="/static/favicon.png"
 )
 ```
 
@@ -94,6 +118,7 @@ config = FastMCPDocsConfig(
         DocsLink(text="Docs", url="https://docs.example.com")
     ],
     page_title_emoji="🤖",
+    favicon_url="https://example.com/favicon.ico",  # Custom favicon
 
     # Customize route paths
     api_tools_route="/api/tools",

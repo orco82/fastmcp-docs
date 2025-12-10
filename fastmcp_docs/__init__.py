@@ -55,6 +55,7 @@ class FastMCPDocs:
         base_url: str = "http://localhost:8000",
         docs_links: Optional[List[Dict[str, str]]] = None,
         page_title_emoji: Optional[str] = None,
+        favicon_url: Optional[str] = None,
         enable_cors: bool = True,
         verbose: bool = True,
         config: Optional[FastMCPDocsConfig] = None
@@ -69,6 +70,7 @@ class FastMCPDocs:
             base_url: Base URL for the API
             docs_links: List of documentation links (dicts with 'text' and 'url')
             page_title_emoji: Optional emoji to display before title
+            favicon_url: Custom favicon URL (default: green circle with M)
             enable_cors: Enable CORS headers
             verbose: Print verbose output during setup
             config: Optional FastMCPDocsConfig instance (overrides other params)
@@ -84,6 +86,7 @@ class FastMCPDocs:
                 base_url=base_url,
                 docs_links=docs_links or [],
                 page_title_emoji=page_title_emoji,
+                favicon_url=favicon_url,
                 enable_cors=enable_cors,
                 verbose=verbose
             )
@@ -114,12 +117,12 @@ class FastMCPDocs:
         registrar = RouteRegistrar(self.mcp, self.config, self.tools_registry)
         registrar.register_all_routes()
 
-        if self.config.verbose:
-            print("\n✓ Documentation setup complete")
-            print(f"  - Documented {len(self.tools_registry)} tools")
-            print(f"  - Docs UI: {self.config.base_url}{self.config.docs_ui_route}")
-            print(f"  - OpenAPI: {self.config.base_url}{self.config.openapi_route}")
-            print(f"  - API: {self.config.base_url}{self.config.api_tools_route}")
+        # if self.config.verbose:
+        print("\n✓ Documentation setup complete")
+        print(f"  - Documented {len(self.tools_registry)} tools")
+        print(f"  - Docs UI: {self.config.base_url}{self.config.docs_ui_route}")
+        print(f"  - OpenAPI: {self.config.base_url}{self.config.openapi_route}")
+        print(f"  - API: {self.config.base_url}{self.config.api_tools_route}")
 
     def get_tools_registry(self) -> Dict:
         """Get the tools registry
