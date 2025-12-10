@@ -15,11 +15,7 @@ Swagger-style documentation generator for FastMCP servers. Automatically creates
 ## Installation
 
 ```bash
-# From local directory
-pip install -e ./fastmcp-docs
-
-# Or directly from git (when published)
-pip install git+https://github.tools.sap/CDC/devops-MCP-server.git#subdirectory=fastmcp-docs
+pip install fastmcp-docs
 ```
 
 ## Quick Start
@@ -125,16 +121,15 @@ docs = FastMCPDocs(mcp, config=config)
 To get parameter descriptions in the documentation, use Pydantic models:
 
 ```python
-from pydantic import BaseModel, Field
-
-class GreetParams(BaseModel):
-    name: str = Field(description="Name of the person to greet")
-    greeting: str = Field(default="Hello", description="Greeting to use")
+from typing import Annotated
 
 @mcp.tool(tags=["greetings"])
-def greet(params: GreetParams) -> str:
+def greet(
+    name: Annotated[str, "Name of the person to greet"],
+    greeting: Annotated[str, "Greeting to use"] = "Hello"
+) -> str:
     """Greet someone with a custom message"""
-    return f"{params.greeting}, {params.name}!"
+    return f"{greeting}, {name}!"
 ```
 
 ## Complete Example
@@ -142,40 +137,38 @@ def greet(params: GreetParams) -> str:
 ```python
 from fastmcp import FastMCP
 from fastmcp_docs import FastMCPDocs
-from pydantic import BaseModel, Field
+from typing import Annotated
 import asyncio
 
 # Create server
-mcp = FastMCP("CDC DevOps MCP Server")
+mcp = FastMCP("My MCP Server")
 
-# Define tool with parameters
-class DeployParams(BaseModel):
-    environment: str = Field(description="Target environment (dev, staging, prod)")
-    version: str = Field(description="Version to deploy")
-    dry_run: bool = Field(default=False, description="Perform dry run without actual deployment")
 
 @mcp.tool(tags=["deployment"], annotations={"title": "Deploy Application"})
-def deploy(params: DeployParams) -> str:
+def deploy(
+    environment: Annotated[str, "Target environment (dev, staging, prod)"],
+    version: Annotated[str, "Version to deploy"],
+    dry_run: Annotated[bool = "Perform dry run without actual deployment"] = False
+) -> str:
     """Deploy application to specified environment
 
     This tool deploys the application to the target environment
     with the specified version. Use dry_run to test without deploying.
     """
-    if params.dry_run:
-        return f"DRY RUN: Would deploy v{params.version} to {params.environment}"
-    return f"Deployed v{params.version} to {params.environment}"
+    if dry_run:
+        return f"DRY RUN: Would deploy v{version} to {environment}"
+    return f"Deployed v{version} to {environment}"
 
 # Setup documentation
 docs = FastMCPDocs(
     mcp=mcp,
-    title="CDC DevOps MCP Tools",
+    title="My FastMCP Tools",
     version="1.0.0",
-    description="DevOps automation tools for CDC infrastructure",
-    base_url="https://devops-mcp.example.com",
+    description="This is my FastMCP Tools Documention",
+    base_url="https://mcp.example.com",
     page_title_emoji="🛠️",
     docs_links=[
-        {"text": "DevOps Guide", "url": "https://docs.example.com/devops"},
-        {"text": "Tool Reference", "url": "https://docs.example.com/tools"}
+        {"text": "Tools Guide", "url": "https://docs.example.com/tools-guide"}
     ]
 )
 
@@ -204,8 +197,8 @@ FastMCP Docs automatically creates the following routes:
 
 ```bash
 # Clone repository
-git clone https://github.tools.sap/CDC/devops-MCP-server.git
-cd devops-MCP-server/fastmcp-docs
+git clone https://github.com/orco82/fastmcp-docs.git
+cd fastmcp-docs
 
 # Install in development mode
 pip install -e ".[dev]"
@@ -234,5 +227,5 @@ Contributions are welcome! Please open an issue or submit a pull request.
 ## Support
 
 For issues and questions:
-- GitHub Issues: https://github.tools.sap/CDC/devops-MCP-server/issues
-- Documentation: https://github.tools.sap/CDC/devops-MCP-server/blob/main/README.md
+- GitHub Issues: https://github.com/orco82/fastmcp-docs/issues
+- Documentation: https://github.com/orco82/fastmcp-docs/blob/main/README.md

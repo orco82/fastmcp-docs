@@ -4,7 +4,7 @@ Basic usage example for fastmcp-docs
 """
 from fastmcp import FastMCP
 from fastmcp_docs import FastMCPDocs
-from pydantic import BaseModel, Field
+from typing import Annotated
 import asyncio
 
 
@@ -23,48 +23,45 @@ def hello_world(name: str = "World") -> str:
     return f"Hello, {name}!"
 
 
-class MathParams(BaseModel):
-    """Parameters for math operations"""
-    a: float = Field(description="First number")
-    b: float = Field(description="Second number")
-
-
 @mcp.tool(tags=["math"], annotations={"title": "Add Two Numbers"})
-def add_numbers(params: MathParams) -> str:
+def add_numbers(
+    a: Annotated[float, "First number"],
+    b: Annotated[float, "Second number"]
+) -> str:
     """Add two numbers together
 
     This tool takes two numbers and returns their sum.
     """
-    result = params.a + params.b
-    return f"{params.a} + {params.b} = {result}"
+    result = a + b
+    return f"{a} + {b} = {result}"
 
 
 @mcp.tool(tags=["math"], annotations={"title": "Multiply Two Numbers"})
-def multiply_numbers(params: MathParams) -> str:
+def multiply_numbers(
+    a: Annotated[float, "First number"],
+    b: Annotated[float, "Second number"]
+) -> str:
     """Multiply two numbers together
 
     This tool takes two numbers and returns their product.
     """
-    result = params.a * params.b
-    return f"{params.a} × {params.b} = {result}"
-
-
-class WeatherParams(BaseModel):
-    """Parameters for weather lookup"""
-    city: str = Field(description="City name")
-    units: str = Field(default="celsius", description="Temperature units (celsius or fahrenheit)")
+    result = a * b
+    return f"{a} × {b} = {result}"
 
 
 @mcp.tool(tags=["weather"], annotations={"title": "Get Weather"})
-def get_weather(params: WeatherParams) -> str:
+def get_weather(
+    city: Annotated[str, "City name"],
+    units: Annotated[str, "Temperature units (celsius or fahrenheit)"] = "celsius"
+) -> str:
     """Get weather for a city
 
     This is a demo tool that returns mock weather data.
     """
-    return f"Weather in {params.city}: 72°{params.units[0].upper()}, Sunny"
+    return f"Weather in {city}: 72°{units[0].upper()}, Sunny"
 
 
-async def main():
+def main():
     """Main function to setup and run server"""
 
     # Setup documentation
@@ -82,7 +79,7 @@ async def main():
     )
 
     # Setup documentation (extracts tools and registers routes)
-    await docs.setup()
+    asyncio.run(docs.setup())
 
     print("\n" + "=" * 60)
     print("Example MCP Server with FastMCP Docs")
@@ -99,4 +96,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()

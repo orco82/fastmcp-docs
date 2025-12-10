@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fastmcp-docs"
+version = "0.1.2"
+description = "Swagger-style documentation generator for FastMCP servers"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    {name = "Or Cohen", email = "orco82@gmail.com"}
+]
+keywords = ["fastmcp", "documentation", "swagger", "openapi", "api-docs", "mcp"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "fastmcp>=0.1.0",
+    "starlette>=0.27.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0",
+    "mypy>=1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/orco82/fastmcp-docs"
+"Bug Reports" = "https://github.com/orco82/fastmcp-docs/issues"
+"Source" = "https://github.com/orco82/fastmcp-docs"
+"Documentation" = "https://github.com/orco82/fastmcp-docs/blob/main/README.md"
+
+[tool.setuptools]
+packages = ["fastmcp_docs"]
