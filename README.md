@@ -60,14 +60,24 @@ docs = FastMCPDocs(
     version="1.0.0",
     description="API documentation for my awesome MCP server",
     base_url="https://api.example.com",
-    page_title_emoji="🚀",
-    favicon_url="https://example.com/favicon.ico"  # Optional: custom favicon
+)
+```
+
+### Adding Documentation Links
+
+```python
+docs = FastMCPDocs(
+    mcp=mcp,
+    title="My MCP Tools",
+    docs_links=[
+        {"text": "GitHub Repository", "url": "https://github.com/..."},
+        {"text": "User Guide", "url": "https://docs.example.com"},
+        {"text": "API Reference", "url": "https://api.example.com/reference"}
+    ]
 )
 ```
 
 ### Customizing the Favicon
-
-By default, FastMCP Docs uses a green circle with the letter "M" as the favicon. You can customize it:
 
 ```python
 # Use default favicon (green circle with M)
@@ -88,20 +98,6 @@ docs = FastMCPDocs(
 )
 ```
 
-### Adding Documentation Links
-
-```python
-docs = FastMCPDocs(
-    mcp=mcp,
-    title="My MCP Tools",
-    docs_links=[
-        {"text": "GitHub Repository", "url": "https://github.com/..."},
-        {"text": "User Guide", "url": "https://docs.example.com"},
-        {"text": "API Reference", "url": "https://api.example.com/reference"}
-    ]
-)
-```
-
 ### Advanced Configuration
 
 ```python
@@ -118,7 +114,7 @@ config = FastMCPDocsConfig(
         DocsLink(text="Docs", url="https://docs.example.com")
     ],
     page_title_emoji="🤖",
-    favicon_url="https://example.com/favicon.ico",  # Custom favicon
+    favicon_url="https://example.com/favicon.ico",
 
     # Customize route paths
     api_tools_route="/api/tools",
@@ -143,7 +139,7 @@ docs = FastMCPDocs(mcp, config=config)
 
 ## Adding Descriptions to Tool Parameters
 
-To get parameter descriptions in the documentation, use Pydantic models:
+To get parameter descriptions in the documentation, use type Annotated:
 
 ```python
 from typing import Annotated
