@@ -1,3 +1,33 @@
+<p align="center">
+  <!-- GitHub metrics -->
+  <!--
+  <a href="https://github.com/orco82/fastmcp-docs">
+    <img alt="GitHub stars" src="https://img.shields.io/github/stars/orco82/fastmcp-docs?style=for-the-badge&logo=github">
+  </a>
+  <a href="https://github.com/orco82/fastmcp-docs/network/members">
+    <img alt="GitHub forks" src="https://img.shields.io/github/forks/orco82/fastmcp-docs?style=for-the-badge">
+  </a>
+  <a href="https://github.com/orco82/fastmcp-docs/issues">
+    <img alt="GitHub issues" src="https://img.shields.io/github/issues/orco82/fastmcp-docs?style=for-the-badge">
+  </a>
+  <a href="https://github.com/orco82/fastmcp-docs/blob/main/LICENSE">
+    <img alt="GitHub license" src="https://img.shields.io/github/license/orco82/fastmcp-docs?style=for-the-badge">
+  </a>
+  <a href="https://github.com/orco82/fastmcp-docs/commits/main">
+    <img alt="Last commit" src="https://img.shields.io/github/last-commit/orco82/fastmcp-docs?style=for-the-badge">
+  </a>
+  -->
+  <!-- PyPI metrics -->
+  <!--
+  <a href="https://pypi.org/project/fastmcp-docs/">
+    <img alt="PyPI version" src="https://img.shields.io/pypi/v/fastmcp-docs?style=for-the-badge&logo=pypi">
+  </a>
+  <a href="https://pypi.org/project/fastmcp-docs/">
+    <img alt="PyPI downloads" src="https://img.shields.io/pypi/dm/fastmcp-docs?style=for-the-badge">
+  </a>
+  -->
+</p>
+
 # FastMCP Docs
 
 Swagger-style documentation generator for FastMCP servers. Automatically creates beautiful, interactive API documentation from your FastMCP tools.
