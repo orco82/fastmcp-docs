@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fastmcp-docs"
-version = "0.2.1"
+version = "0.2.2"
 description = "Swagger-style documentation generator for FastMCP servers"
 readme = "README.md"
 requires-python = ">=3.10"

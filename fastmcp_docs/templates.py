@@ -34,7 +34,7 @@ def get_docs_ui_template(config) -> str:
         ])
         docs_links_html = f"""
         <p style="margin-bottom:0px;"><strong>Documentation:</strong></p>
-        <ul style="margin-left: 20px;">
+        <ul>
             {links_items}
         </ul>
         """
@@ -62,8 +62,8 @@ def get_docs_ui_template(config) -> str:
 
         <div class="info">
             <p>{config.description}</p>
-            <p style="margin-bottom:0px;"><strong>Base URL:</strong> {config.base_url}</p>
             {docs_links_html}
+            <p><strong>Base URL:</strong> {config.base_url}</p>
         </div>
 
         <div class="search-box">
@@ -92,6 +92,19 @@ def _get_css() -> str:
 body {
     font-family: sans-serif;
     color: #3b4151;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0 0 10px 20px;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+li::before {
+    content: "⚙ ";
 }
 
 .swagger-ui {
